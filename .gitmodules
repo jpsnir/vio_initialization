@@ -1,0 +1,3 @@
+[submodule "imu_initialization"]
+	path = imu_initialization
+	url = https://github.com/dzunigan/imu_initialization.git
