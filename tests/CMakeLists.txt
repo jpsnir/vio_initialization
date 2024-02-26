@@ -1,6 +1,5 @@
 find_package(GTest REQUIRED)
 
-
 if(${GTest_FOUND})
     message(STATUS "Gtest found : ${GTest_VERSION}")
 endif()
@@ -19,6 +18,9 @@ target_link_libraries(test_simulation GTest::gtest gtsam vio_init)
 
 add_executable(test_data_utils ./test_data_utilities.cpp)
 target_link_libraries(test_data_utils GTest::gtest gtsam vio_init)
+
+add_executable(test_io ./test_io.cpp ./../imu_initialization/src/string.cc)
+target_link_libraries(test_io GTest::gtest ${Boost_LIBRARIES} ${GLOG_LIBRARIES})
 
 
 include(GoogleTest)

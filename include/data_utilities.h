@@ -25,6 +25,22 @@ void print_vector(std::vector<T> &v){
     cout << endl;
 }
 
+template<typename T>
+void print_row_vector(std::vector<T> &v, int j){
+    cout << " \n " << endl;
+    for (int k = 0; k <= j; k++)
+        cout << v[k] << ",";
+    cout << endl;
+}
+
+template<typename T>
+void print_state_vector(std::vector<T> &v, int i , int j){
+    cout << " \n " << endl;
+    for (int k = i; k <= j; k++)
+        cout << v[k] << endl;
+    cout << endl;
+}
+
 
 // Todo : convert these functions to templated types. 
 
