@@ -17,6 +17,19 @@ struct VioInitData
     VioInitData(pair<uint64_t, uint64_t> times, pair<gtsam::Pose3, gtsam::Pose3> poses, gtsam::PreintegratedImuMeasurements &pIntImu);
 
 };
+struct VioInitSolution{
+    
+    // in IMU frame
+    Eigen::Vector3f acc_bias_i_;
+    Eigen::Vector3f gyro_bias_i;
+    // in world frame
+    Eigen::Vector3f gravity_W;
+    std::vector<Eigen::Vector3f> v_velocities_W_;
+    gtsam::Pose3 p_i_T_c;  // transformation of camera to IMU.
+    gtsam::Pose3 p_wg_T_i; // gravity aligned world frame.
+    float scale_;
+};
+
 class ImuInitializer
 {
 public:
@@ -39,23 +52,16 @@ public:
 
 private:
     // IMU measurements in IMU frame
-    std::vector<Eigen::VectorXf> acc_i_;
-    std::vector<Eigen::VectorXf> gyro_i_;
-
+    std::vector<Eigen::VectorXf> v_acc_i_;
+    std::vector<Eigen::VectorXf> v_gyro_i_;
     // camera poses wrt to camera world frame
-    std::vector<gtsam::Pose3> mono_cam_poses_;
-    std::vector<gtsam::Pose3> stereo_cam_poses_;
+    std::vector<gtsam::Pose3> v_mono_cam_poses_;
+    std::vector<gtsam::Pose3> v_stereo_cam_poses_;
 
-    // in IMU frame
-    Eigen::Vector3f acc_bias_i_;
-    Eigen::Vector3f gyro_bias_i;
+    // input data for initialization problem - a factor graph problem
 
-    // in world frame
-    Eigen::Vector3f gravity_W;
-    std::vector<Eigen::Vector3f> velocities_W_;
-    gtsam::Pose3 i_T_c;  // transformation of camera to IMU.
-    gtsam::Pose3 wg_T_i; // gravity aligned world frame.
-    float scale_;
+    std::vector<VioInitData> v_input_data;
+    VioInitSolution vioInitSolution;
     gtsam::NonlinearFactorGraph fg_gyro_bias;
     gtsam::NonlinearFactorGraph fg_acc_bias;
     gtsam::NonlinearFactorGraph fg_scale_bias;
