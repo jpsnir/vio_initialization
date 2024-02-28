@@ -11,7 +11,6 @@ set(GTSAM_UNSTALBE_DIR
 find_package(GTSAM REQUIRED PATHS ${GTSAM_DIR} NO_DEFAULT_PATH)
 find_package(GTSAM_UNSTABLE REQUIRED PATHS ${GTSAM_UNSTALBE_DIR} NO_DEFAULT_PATH)
 find_package(Eigen3 REQUIRED)
-find_package(Gflags REQUIRED)
 find_package(Glog REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 
