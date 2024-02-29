@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(vio_initialization)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/imu_initialization/cmake_modules")
 # gtsam based code
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(GTSAM_DIR "/home/jagatpreet/software/gtsam/install_4_1/lib/cmake/GTSAM")
 set(GTSAM_UNSTALBE_DIR
