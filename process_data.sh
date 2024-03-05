@@ -9,7 +9,7 @@ fi
 input_dir=$1
 dataset_name=$(basename ${input_dir})
 echo "Dataset name : $dataset_name"
-read -p "Enter to continue"
+sleep 2
 declare -A files_dict
 files_dict["mono"]="DroidKeyFrameTrajectoryMono.txt"
 files_dict["stereo"]="DroidKeyFrameTrajectoryStereo.txt"
@@ -32,5 +32,5 @@ for k in ${!files_dict[@]}; do
     --filename ${f}
     wait
     mkdir -p ./exp2_results/${dataset_name}/${k}
-    mv  *.csv ./exp2_results/${k}/
+    mv  *.csv ./exp2_results/${dataset_name}/${k}/
 done
