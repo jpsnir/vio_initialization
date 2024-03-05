@@ -31,6 +31,6 @@ for k in ${!files_dict[@]}; do
     --camera_step_size 4\
     --filename ${f}
     wait
-    mkdir -p ./exp2_results/${k}
-    mv -r ./build/imu_initialization/*.csv ./exp2_results/${k}/
+    mkdir -p ./exp2_results/${dataset_name}/${k}
+    mv  *.csv ./exp2_results/${k}/
 done
