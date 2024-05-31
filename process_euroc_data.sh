@@ -19,11 +19,10 @@ sequences=(
     V2_03_difficult
 )
 
-
-output_dir="./exp2_results"
-declare -A files_dict
-files_dict["mono"]="DroidKeyFrameTrajectoryMono.txt"
-files_dict["stereo"]="DroidKeyFrameTrajectoryStereo.txt"
+output_dir="./exp2_results/euroc"
+declare -A euroc_files_dict
+euroc_files_dict["mono"]="DroidKeyFrameTrajectoryMono.txt"
+euroc_files_dict["stereo"]="DroidKeyFrameTrajectoryStereo.txt"
 
 # gap time - max time between keyframes (in seconds)
 # step size: distance between two keyframes (we have interpolated the droid slam
@@ -31,14 +30,15 @@ files_dict["stereo"]="DroidKeyFrameTrajectoryStereo.txt"
 # are making it 5 hz keyframe rate for trajectory evaluation"
 # nframes : number of keyframes for solving the
 
+# EUROC sequence
 for dataset_name in ${sequences[@]}; do
     echo "Processing : dataset name : ${dataset_name}"
     sleep 2
     input_dir=$1/${dataset_name}
-    for k in ${!files_dict[@]}; do
-        echo "Camera type : ${k} - filename : ${files_dict[$k]}"
+    for k in ${!euroc_files_dict[@]}; do
+        echo "Camera type : ${k} - filename : ${euroc_files_dict[$k]}"
         echo " Processing data"
-        f=${files_dict[$k]}
+        f=${euroc_files_dict[$k]}
         ./build/imu_initialization/experiment02\
         ${input_dir}\
         --nframes 5\
